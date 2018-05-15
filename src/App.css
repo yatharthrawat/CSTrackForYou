@@ -1,28 +1,37 @@
-.App {
-  text-align: center;
+
+
+.course {
+    background: #00FF00;
+    border: 1px solid #999;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 28px;
+    margin-right: -1px;
+    margin-top: -1px;
+    text-align: center;
+    width: 150px;
+    white-space: nowrap;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+.Graph {
+    height: max-content;
+    width: max-content;
+    float: left;
+    }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 2.5em;
+    text-align: center;
+}
+.buttonrow {
+    float: right;
+    border: 3px solid #73AD21;
+    padding: 10px;
 }
 
-.App-intro {
-  font-size: large;
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
+
+
