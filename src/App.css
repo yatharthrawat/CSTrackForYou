@@ -40,15 +40,15 @@
     background-color: #e54747;
 }
 .button:hover {
-    background-color: #e54747;
+    background-color: #248f24;
 }
 .button:active {
     background-color: #ffff00;
 }
 
 .reset {
-    background-color: #f44242;
-    border: 1px solid #FFF;
+    background-color: #ff0000;
+    border: 3px solid #f2f2f2;
     color: white;
     text-align: center;
     font-weight: bold;
@@ -69,11 +69,7 @@
     background-color: #e54747;
 }
 
-h1 { color: #2f1cd8; font-family: 'Raleway',sans-serif; font-size: 60px; font-weight: 800; line-height: 72px; margin: 0 0 1px; text-align: center; text-transform: uppercase; }
-.App-title {
-  font-size: 2.5em;
-    text-align: center;
-}
+h1 { color: #2f1cd8; font-family: 'Raleway',sans-serif; font-size:40px; font-weight: 800; line-height: 60px; margin:0 0 0 0px; text-align: center; text-transform: uppercase; }
 
 body{
     background-color:#f2f2f2;
@@ -81,13 +77,11 @@ body{
 .buttonrow {
     float: right;
     border: 3px solid #73AD21;
-    padding: 10px;
+    padding: 8px;
     height: fit-content;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3px;
-    margin-bottom: 3px;
     text-align: center;
 }
 
