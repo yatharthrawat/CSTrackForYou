@@ -165,23 +165,20 @@ const SP_list=[
     "CS 489",
     "CS 490DS0"];
 
-var CSE=3;
-var CGV=3;
-var DIS=3;
-var FCS=3;
-var SE=3;
-var SP=3;
+var CSE=0;
+var CGV=0;
+var DIS=0;
+var FCS=0;
+var SE=0;
+var SP=0;
 var ML=3;
 var PL=3;
 var SEC=3;
 
 function Course(props) {
 
-    function handleClick(){
-        console.log(props.value);
-    }
     return (
-        <button className="course" onClick={handleClick}>
+        <button className="course" onClick={props.onClick1}>
             {props.value}
         </button>
     );
@@ -191,11 +188,17 @@ function Course(props) {
 
 class ButtonInterface extends React.Component{
 
+    handleClick(value){
+       console.log(value);
+    }
+
     renderCourse(i) {
         return (
-            <Course value={courselist[i]}/>
+            <Course value={courselist[i]} onClick1={()=>this.handleClick(courselist[i])}/>
         );
     }
+
+
     render(){
         var buttons=[];
         for(var i=0;i<courselist.length;i++){
@@ -227,16 +230,7 @@ class ButtonInterface extends React.Component{
 
 
 class Graph extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
   render() {
-        console.log(this.props.CSE +this.props.CGV+
-            this.props.DIS+ this.props.FCS+
-            this.props.ML+ this.props.PL+
-            this.props.SEC+this.props.SE+this.props.SP);
-
         //All the data that is being passed through HorizontalBar which is a React wrapper for Chart.js
         let data = {
           labels: ["Computational Science and Engineering Track",
@@ -264,7 +258,6 @@ class Graph extends React.Component {
                       this.props.ML, this.props.PL,
                       this.props.SEC,this.props.SE,this.props.SP]
               }
-
           ]
       };
 
@@ -285,7 +278,7 @@ class Graph extends React.Component {
           }
       };
 
-      return <HorizontalBar data={data} options={options}  />;
+      return <HorizontalBar data={data} options={options}/>;
   }
 }
 
