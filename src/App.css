@@ -1,29 +1,82 @@
 
 
-.course {
-    background: #00FF00;
-    border: 1px solid #999;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 28px;
-    margin-right: -1px;
-    margin-top: -1px;
+.button {
+    background-color: #2eb82e;
+    border: 1px solid #FFF;
+    color: white;
     text-align: center;
-    width: 150px;
+    font-weight: bold;
+    text-decoration: none;
     white-space: nowrap;
+    display: inline-block;
+    width: 180px;
+    height: 28px;
+    font-size: 12px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
 }
 
-.Graph {
-    height: max-content;
-    width: max-content;
-    float: left;
-    }
+.button_after {
+    background-color: #f44242;
+    border: 1px solid #FFF;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    width: 180px;
+    height: 28px;
+    font-size: 12px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button_after:hover {
+    background-color: #d13434;
+}
+.button_after:active {
+    background-color: #e54747;
+}
+.button:hover {
+    background-color: #e54747;
+}
+.button:active {
+    background-color: #ffff00;
+}
 
+.reset {
+    background-color: #f44242;
+    border: 1px solid #FFF;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    display: inline-block;
+    width: 180px;
+    height: 28px;
+    font-size: 12px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.reset:hover {
+    background-color: #d13434;
+}
+.reset:active {
+    background-color: #e54747;
+}
+
+h1 { color: #2f1cd8; font-family: 'Raleway',sans-serif; font-size: 60px; font-weight: 800; line-height: 72px; margin: 0 0 1px; text-align: center; text-transform: uppercase; }
 .App-title {
   font-size: 2.5em;
     text-align: center;
+}
+
+body{
+    background-color:#f2f2f2;
 }
 .buttonrow {
     float: right;
@@ -31,7 +84,14 @@
     padding: 10px;
     height: fit-content;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: center;
 }
+
+
 
 
 
