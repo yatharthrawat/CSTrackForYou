@@ -74,7 +74,7 @@ h1 { color: #2f1cd8; font-family: 'Raleway',sans-serif; font-size:40px; font-wei
 body{
     background-color:#f2f2f2;
 }
-.buttonrow {
+.ButtonRow {
     float: right;
     border: 3px solid #73AD21;
     padding: 8px;

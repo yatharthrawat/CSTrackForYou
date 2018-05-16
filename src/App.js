@@ -256,7 +256,7 @@ class ButtonInterface extends React.Component {
 
             <div>
                 <div>
-                    <h1 className="App-title">CS Track for You</h1>
+                    <h1>CS Track for You</h1>
                 </div>
                 <div>
                     <Graph CSE={(this.state.CSE / CSE_requiredNoCourses) * 100}
@@ -275,7 +275,7 @@ class ButtonInterface extends React.Component {
                         Reset
                     </button>
                 </div>
-                <div className="buttonrow">
+                <div className="ButtonRow">
                     {buttons}
                 </div>
 
