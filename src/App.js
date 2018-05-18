@@ -3,6 +3,7 @@ import './App.css';
 import {HorizontalBar} from 'react-chartjs-2';
 import Data from './Data';
 
+
 //Pulling all data for each track and all CS courses from Data.json
 const CourseList = Data.CourseList;
 const CSE_list = Data.CSE_list;
@@ -25,6 +26,60 @@ const ML_requiredNoCourses = Data.ML_requiredNoCourses;
 const PL_requiredNoCourses = Data.PL_requiredNoCourses;
 const SEC_requiredNoCourses = Data.SEC_requiredNoCourses;
 
+const CSE_requiredNoCoursesElective = Data.CSE_requiredNoCoursesElective;
+const CGV_requiredNoCoursesElective = Data.CGV_requiredNoCoursesElective;
+const DIS_requiredNoCoursesElective = Data.DIS_requiredNoCoursesElective;
+const FCS_requiredNoCoursesElective = Data.FCS_requiredNoCoursesElective;
+const SE_requiredNoCoursesElective = Data.SE_requiredNoCoursesElective;
+const SP_requiredNoCoursesElective = Data.SP_requiredNoCoursesElective;
+const ML_requiredNoCoursesElective = Data.ML_requiredNoCoursesElective;
+const PL_requiredNoCoursesElective = Data.PL_requiredNoCoursesElective;
+const SEC_requiredNoCoursesElective = Data.SEC_requiredNoCoursesElective;
+
+const CSE_requiredNoCoursesCore = Data.CSE_requiredNoCoursesCore;
+const CGV_requiredNoCoursesCore = Data.CGV_requiredNoCoursesCore;
+const DIS_requiredNoCoursesCore = Data.DIS_requiredNoCoursesCore;
+const FCS_requiredNoCoursesCore = Data.FCS_requiredNoCoursesCore;
+const SE_requiredNoCoursesCore = Data.SE_requiredNoCoursesCore;
+const SP_requiredNoCoursesCore = Data.SP_requiredNoCoursesCore;
+const ML_requiredNoCoursesCore = Data.ML_requiredNoCoursesCore;
+const PL_requiredNoCoursesCore = Data.PL_requiredNoCoursesCore;
+const SEC_requiredNoCoursesCore = Data.SEC_requiredNoCoursesCore;
+
+const CSE_listCore = Data.CSE_listCore;
+const CGV_listCore = Data.CGV_listCore;
+const DIS_listCore = Data.DIS_listCore;
+const ML_listCore = Data.ML_listCore;
+const PL_listCore = Data.PL_listCore;
+const FCS_listCore = Data.FCS_listCore;
+const SE_listCore = Data.SE_listCore;
+const SEC_listCore = Data.SEC_listCore;
+const SP_listCore = Data.SP_listCore;
+
+var CSE_Core=0;
+var CSE_Elective=0;
+var CGV_Core=0;
+var CGV_Elective=0;
+var DIS_Core=0;
+var DIS_Elective=0;
+var FCS_Core=0;
+var FCS_Elective=0;
+var ML_Core=0;
+var ML_Elective=0;
+var PL_Core=0;
+var PL_Elective=0;
+var SP_Core=0;
+var SP_Elective=0;
+var SE_Core=0;
+var SE_Elective=0;
+var SEC_Core=0;
+var SEC_Elective=0;
+
+var CoursesSelected=new Set([]);  //Course Selected List Maintained
+
+function empty(){
+    CoursesSelected.clear();
+}
 
 // Creates Button with the name of the Course e.g "CS 307"
 function Course(props) {
@@ -65,7 +120,6 @@ class ButtonInterface extends React.Component {
 
     handleClick(value) {    // Method called for Onclick Method for all Course Button (All Button except "Reset")
         // Increases or decreases by 1 depending if the button has previously been pressed before.
-
         let index = 0; // index required to be switched in the ButtonPressed Array, index value is the same as the index value in CourseList Array
         for (let i = 0; i < CourseList.length; i++) {
             if (value === CourseList[i]) {
@@ -78,132 +132,437 @@ class ButtonInterface extends React.Component {
         // "For" loops for each track, checks if course fulfills the particular tracks requirement and increases or decreases the Graph by changing "State"
         for (let i = 0; i < CSE_list.length; i++) {
             if (value === CSE_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        CSE: prevState.CSE + 1
-                    }));
-                }
-                else {
-                    this.setState((prevState, props) => ({
-                        CSE: prevState.CSE - 1
-                    }));
-                }
+                let isElective=true;
+                    for (let j = 0; j <CSE_listCore.length ; j++) {
 
+                        if(value===CSE_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                            isElective=false;
+                            if(!ButtonEvent[index]&&CSE_Core<CSE_requiredNoCoursesCore){
+                                CSE_Core++;
+                                CoursesSelected.add(value);
+                            }
+
+                            else if(ButtonEvent[index]&&CSE_Core>0){
+                                for (let k = 0; k <CoursesSelected.length ; k++) {
+                                    if(value===CoursesSelected[k]){
+                                        CSE_Core--;
+                                        CoursesSelected.delete(value);
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    }
+                    if(isElective){  //Same done for elective as is done for Core Courses
+                        if(!ButtonEvent[index]&&CSE_Elective<CSE_requiredNoCoursesElective){
+                            CSE_Elective++;
+                            CoursesSelected.add(value);
+                        }
+                        else if(ButtonEvent[index]&&CSE_Elective>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    CSE_Elective--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+                        }
+                    }
+                let finalValue=CSE_Core+CSE_Elective;
+                this.setState({
+                    CSE: finalValue
+                });
             }
         }
+
+
+
         for (let i = 0; i < CGV_list.length; i++) {
             if (value === CGV_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        CGV: prevState.CGV + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <CGV_listCore.length ; j++) {
+
+                    if(value===CGV_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&CGV_Core<CGV_requiredNoCoursesCore){
+                            CGV_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&CGV_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    CGV_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        CGV: prevState.CGV - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&CGV_Elective<CGV_requiredNoCoursesElective){
+                        CGV_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&CGV_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                CGV_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=CGV_Core+CGV_Elective;
+                this.setState({
+                    CGV: finalValue
+                });
             }
         }
 
         for (let i = 0; i < DIS_list.length; i++) {
             if (value === DIS_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        DIS: prevState.DIS + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <DIS_listCore.length ; j++) {
+
+                    if(value===DIS_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&DIS_Core<DIS_requiredNoCoursesCore){
+                            DIS_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&DIS_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    DIS_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        DIS: prevState.DIS - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&DIS_Elective<DIS_requiredNoCoursesElective){
+                        DIS_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&DIS_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                DIS_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=DIS_Core+DIS_Elective;
+                this.setState({
+                    DIS: finalValue
+                });
             }
         }
 
 
         for (let i = 0; i < FCS_list.length; i++) {
             if (value === FCS_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        FCS: prevState.FCS + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <FCS_listCore.length ; j++) {
+
+                    if(value===FCS_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&FCS_Core<FCS_requiredNoCoursesCore){
+                            FCS_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&FCS_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    FCS_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        FCS: prevState.FCS - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&FCS_Elective<FCS_requiredNoCoursesElective){
+                        FCS_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&FCS_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                FCS_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=FCS_Core+FCS_Elective;
+                this.setState({
+                    FCS: finalValue
+                });
             }
         }
         for (let i = 0; i < SE_list.length; i++) {
             if (value === SE_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        SE: prevState.SE + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <SE_listCore.length ; j++) {
+
+                    if(value===SE_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&SE_Core<SE_requiredNoCoursesCore){
+                            SE_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&SE_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SE_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        SE: prevState.SE - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&SE_Elective<SE_requiredNoCoursesElective){
+                        SE_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&SE_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SE_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=SE_Core+SE_Elective;
+                this.setState({
+                    SE: finalValue
+                });
             }
         }
         for (let i = 0; i < SEC_list.length; i++) {
             if (value === SEC_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        SEC: prevState.SEC + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <SEC_listCore.length ; j++) {
+
+                    if(value===SEC_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&SEC_Core<SEC_requiredNoCoursesCore){
+                            SEC_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&SEC_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SEC_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        SEC: prevState.SEC - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&SEC_Elective<SEC_requiredNoCoursesElective){
+                        SEC_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&SEC_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SEC_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=SEC_Core+SEC_Elective;
+                this.setState({
+                    SEC: finalValue
+                });
             }
         }
         for (let i = 0; i < ML_list.length; i++) {
             if (value === ML_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        ML: prevState.ML + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <ML_listCore.length ; j++) {
+
+                    if(value===ML_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&ML_Core<ML_requiredNoCoursesCore){
+                            ML_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&ML_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    ML_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        ML: prevState.ML - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&ML_Elective<ML_requiredNoCoursesElective){
+                        ML_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&ML_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                ML_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=ML_Core+ML_Elective;
+                this.setState({
+                    ML: finalValue
+                });
             }
         }
         for (let i = 0; i < PL_list.length; i++) {
             if (value === PL_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        PL: prevState.PL + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <PL_listCore.length ; j++) {
+
+                    if(value===PL_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&PL_Core<PL_requiredNoCoursesCore){
+                            PL_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&PL_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    PL_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        PL: prevState.PL - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&PL_Elective<PL_requiredNoCoursesElective){
+                        PL_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&PL_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                PL_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=PL_Core+PL_Elective;
+                this.setState({
+                    PL: finalValue
+                });
             }
         }
         for (let i = 0; i < SP_list.length; i++) {
             if (value === SP_list[i]) {
-                if (!ButtonEvent[index]) {
-                    this.setState((prevState, props) => ({
-                        SP: prevState.SP + 1
-                    }));
+                let isElective=true;
+                for (let j = 0; j <SP_listCore.length ; j++) {
+
+                    if(value===SP_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&SP_Core<SP_requiredNoCoursesCore){
+                            SP_Core++;
+                            CoursesSelected.add(value);
+                        }
+
+                        else if(ButtonEvent[index]&&SP_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SP_Core--;
+                                    CoursesSelected.delete(value);
+                                }
+                            }
+
+                        }
+
+                    }
+
                 }
-                else {
-                    this.setState((prevState, props) => ({
-                        SP: prevState.SP - 1
-                    }));
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&SP_Elective<SP_requiredNoCoursesElective){
+                        SP_Elective++;
+                        CoursesSelected.add(value);
+                    }
+                    else if(ButtonEvent[index]&&SP_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SP_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                }
+                            }
+                        }
+                    }
                 }
+                let finalValue=SP_Core+SP_Elective;
+                this.setState({
+                    SP: finalValue
+                });
             }
         }
 
@@ -212,10 +571,30 @@ class ButtonInterface extends React.Component {
         this.setState({
             ButtonPressed: ButtonEvent
         });
-
+        console.log(CoursesSelected);
     }
 
     handleReset() { // Resets everything graph values to zero and ButtonPress array to false
+        CSE_Core=0;
+        CSE_Elective=0;
+        CGV_Core=0;
+        CGV_Elective=0;
+        DIS_Core=0;
+        DIS_Elective=0;
+        FCS_Core=0;
+        FCS_Elective=0;
+        ML_Core=0;
+        ML_Elective=0;
+        PL_Core=0;
+        PL_Elective=0;
+        SP_Core=0;
+        SP_Elective=0;
+        SE_Core=0;
+        SE_Elective=0;
+        SEC_Core=0;
+        SEC_Elective=0;
+        empty();
+
         this.setState(
             {
                 CSE: 0,
@@ -233,8 +612,9 @@ class ButtonInterface extends React.Component {
                         false, false, false, false, false, false,
                         false, false, false, false, false, false,
                         false, false, false, false, false, false,
-                        false, false, false, false, false],
+                        false, false, false, false, false]
             });
+
     }
 
     renderCourse(i) { // Method that creates Button for each course and attaches onClick style decider props.
