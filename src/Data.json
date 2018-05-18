@@ -1,40 +1,40 @@
 {
   "CourseList" : [
-  "MA 266",
-  "MA 366",
-  "CS 314",
-  "CS 307",
-  "CS 334",
-  "CS 352",
-  "CS 354",
-  "CS 381",
-  "CS 434",
-  "CS 348",
-  "CS 448",
-  "CS 471",
-  "CS 514",
-  "CS 515",
-  "CS 456",
-  "CS 483",
-  "CS 422",
-  "CS 373",
-  "CS 473",
-  "CS 355",
-  "CS 426",
-  "CS 478",
-  "CS 390-WAP",
-  "CS 497",
-  "STAT 416",
-  "MA 416",
-  "STAT 512",
-  "CS 353",
-  "CS 408",
-  "CS 489",
-  "CS 490-DS0",
-  "CS 490-SWS",
-  "CS 407",
-  "CS 390-VRA",
-  "CS 490-Senior Project"],
+                  "MA 266",
+                  "MA 366",
+                  "CS 314",
+                  "CS 307",
+                  "CS 334",
+                  "CS 352",
+                  "CS 354",
+                  "CS 381",
+                  "CS 434",
+                  "CS 348",
+                  "CS 448",
+                  "CS 471",
+                  "CS 514",
+                  "CS 515",
+                  "CS 456",
+                  "CS 483",
+                  "CS 422",
+                  "CS 373",
+                  "CS 473",
+                  "CS 355",
+                  "CS 426",
+                  "CS 478",
+                  "CS 390-WAP",
+                  "CS 497",
+                  "STAT 416",
+                  "MA 416",
+                  "STAT 512",
+                  "CS 353",
+                  "CS 408",
+                  "CS 489",
+                  "CS 490-DS0",
+                  "CS 490-SWS",
+                  "CS 407",
+                  "CS 390-VRA",
+                  "CS 490-Senior Project"],
 
   "CSE_list" : [
                 "MA 266",
@@ -176,5 +176,86 @@
   "SP_requiredNoCourses": 6,
   "ML_requiredNoCourses": 6,
   "PL_requiredNoCourses": 6,
-  "SEC_requiredNoCourses": 6
+  "SEC_requiredNoCourses": 6,
+
+  "CSE_requiredNoCoursesCore": 2,
+  "CGV_requiredNoCoursesCore": 2,
+  "DIS_requiredNoCoursesCore": 4,
+  "FCS_requiredNoCoursesCore": 2,
+  "SE_requiredNoCoursesCore": 4,
+  "SP_requiredNoCoursesCore": 3,
+  "ML_requiredNoCoursesCore": 4,
+  "PL_requiredNoCoursesCore": 3,
+  "SEC_requiredNoCoursesCore": 3,
+
+  "CSE_requiredNoElective": 5,
+  "CGV_requiredNoElective": 4,
+  "DIS_requiredNoElective": 3,
+  "FCS_requiredNoElective": 4,
+  "SE_requiredNoElective": 2,
+  "SP_requiredNoElective": 3,
+  "ML_requiredNoElective": 2,
+  "PL_requiredNoElective": 3,
+  "SEC_requiredNoElective": 3,
+
+  "CSE_listCore" : [
+    "MA 266",
+    "MA 366",
+    "CS 314"
+    ],
+
+  "CGV_listCore" : [
+    "CS 334",
+    "CS 314",
+    "CS 381"
+   ],
+
+  "DIS_listCore" : [
+    "CS 348",
+    "CS 381",
+    "CS 448",
+    "CS 373",
+    "CS 473"
+    ],
+  "FCS_listCore" : [
+    "CS 352",
+    "CS 381"
+    ],
+
+  "ML_listCore": [
+    "CS 373",
+    "CS 381",
+    "CS 471",
+    "CS 473",
+    "STAT 416",
+    "MA 416",
+    "STAT 512"
+    ],
+
+  "PL_listCore" : [
+    "CS 352",
+    "CS 354",
+    "CS 456"
+    ],
+
+  "SE_listCore" : [
+    "CS 307",
+    "CS 352",
+    "CS 354",
+    "CS 408",
+    "CS 407"
+   ],
+
+  "SEC_listCore" : [
+    "CS 354",
+    "CS 355",
+    "CS 426"
+    ],
+
+  "SP_listCore" : [
+    "CS 352",
+    "CS 354",
+    "CS 422"
+    ]
+
 }
