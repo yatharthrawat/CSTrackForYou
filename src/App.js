@@ -143,12 +143,11 @@ class ButtonInterface extends React.Component {
                             }
 
                             else if(ButtonEvent[index]&&CSE_Core>0){
-                                for (let k = 0; k <CoursesSelected.length ; k++) {
-                                    if(value===CoursesSelected[k]){
+                                    if(CoursesSelected.has(value)){
                                         CSE_Core--;
                                         CoursesSelected.delete(value);
                                     }
-                                }
+
 
                             }
 
@@ -161,11 +160,9 @@ class ButtonInterface extends React.Component {
                             CoursesSelected.add(value);
                         }
                         else if(ButtonEvent[index]&&CSE_Elective>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    CSE_Elective--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                CSE_Elective--;
+                                CoursesSelected.delete(value);
                             }
                         }
                     }
@@ -191,11 +188,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&CGV_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    CGV_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                CGV_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -209,14 +204,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&CGV_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                CGV_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            CGV_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -240,11 +230,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&DIS_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    DIS_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                DIS_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -258,14 +246,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&DIS_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                DIS_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            DIS_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -290,11 +273,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&FCS_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    FCS_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                FCS_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -308,14 +289,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&FCS_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                FCS_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            FCS_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -338,11 +314,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&SE_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    SE_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                SE_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -356,14 +330,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&SE_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                SE_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            SE_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -386,11 +355,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&SEC_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    SEC_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                SEC_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -404,14 +371,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&SEC_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                SEC_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            SEC_Core--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -434,11 +396,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&ML_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    ML_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                ML_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -452,14 +412,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&ML_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                ML_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            ML_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -482,11 +437,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&PL_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    PL_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                PL_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -500,14 +453,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&PL_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                PL_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            PL_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
@@ -530,11 +478,9 @@ class ButtonInterface extends React.Component {
                         }
 
                         else if(ButtonEvent[index]&&SP_Core>0){
-                            for (let k = 0; k <CoursesSelected.length ; k++) {
-                                if(value===CoursesSelected[k]){
-                                    SP_Core--;
-                                    CoursesSelected.delete(value);
-                                }
+                            if(CoursesSelected.has(value)){
+                                SP_Core--;
+                                CoursesSelected.delete(value);
                             }
 
                         }
@@ -548,14 +494,9 @@ class ButtonInterface extends React.Component {
                         CoursesSelected.add(value);
                     }
                     else if(ButtonEvent[index]&&SP_Elective>0){
-                        for (let k = 0; k <CoursesSelected.length ; k++) {
-                            if(value===CoursesSelected[k]){
-                                SP_Elective--;
-                                let toBeRemoved = CoursesSelected.indexOf(value);
-                                if (index > -1) {
-                                    CoursesSelected.splice(toBeRemoved, 1);
-                                }
-                            }
+                        if(CoursesSelected.has(value)){
+                            SP_Elective--;
+                            CoursesSelected.delete(value);
                         }
                     }
                 }
