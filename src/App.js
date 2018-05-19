@@ -75,10 +75,10 @@ var SE_Elective=0;
 var SEC_Core=0;
 var SEC_Elective=0;
 
-var CoursesSelected=new Set([]);  //Course Selected List Maintained
+var CoursesSelected=[];  //Course Selected List Maintained
 
 function empty(){
-    CoursesSelected.clear();
+    CoursesSelected=[];
 }
 
 // Creates Button with the name of the Course e.g "CS 307"
@@ -133,39 +133,50 @@ class ButtonInterface extends React.Component {
         for (let i = 0; i < CSE_list.length; i++) {
             if (value === CSE_list[i]) {
                 let isElective=true;
-                    for (let j = 0; j <CSE_listCore.length ; j++) {
+                for (let j = 0; j <CSE_listCore.length ; j++) {
 
-                        if(value===CSE_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
-                            isElective=false;
-                            if(!ButtonEvent[index]&&CSE_Core<CSE_requiredNoCoursesCore){
-                                CSE_Core++;
-                                CoursesSelected.add(value);
-                            }
+                    if(value===CSE_listCore[j]){    //Checks if it is part of CS core courses stops increasing the graph if core courses have already reached
+                        isElective=false;
+                        if(!ButtonEvent[index]&&CSE_Core<CSE_requiredNoCoursesCore){
+                            CSE_Core++;
+                            CoursesSelected.push(value);
+                        }
 
-                            else if(ButtonEvent[index]&&CSE_Core>0){
-                                    if(CoursesSelected.has(value)){
-                                        CSE_Core--;
-                                        CoursesSelected.delete(value);
+                        else if(ButtonEvent[index]&&CSE_Core>0){
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    CSE_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
                                     }
-
-
+                                }
                             }
 
                         }
 
                     }
-                    if(isElective){  //Same done for elective as is done for Core Courses
-                        if(!ButtonEvent[index]&&CSE_Elective<CSE_requiredNoCoursesElective){
-                            CSE_Elective++;
-                            CoursesSelected.add(value);
-                        }
-                        else if(ButtonEvent[index]&&CSE_Elective>0){
-                            if(CoursesSelected.has(value)){
+
+                }
+                if(isElective){  //Same done for elective as is done for Core Courses
+                    if(!ButtonEvent[index]&&CSE_Elective<CSE_requiredNoCoursesElective){
+                        CSE_Elective++;
+                        CoursesSelected.push(value);
+                    }
+                    else if(ButtonEvent[index]&&CSE_Elective>0){
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
                                 CSE_Elective--;
-                                CoursesSelected.delete(value);
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
                             }
                         }
                     }
+                }
                 let finalValue=CSE_Core+CSE_Elective;
                 this.setState({
                     CSE: finalValue
@@ -184,13 +195,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&CGV_Core<CGV_requiredNoCoursesCore){
                             CGV_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&CGV_Core>0){
-                            if(CoursesSelected.has(value)){
-                                CGV_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    CGV_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -201,12 +218,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&CGV_Elective<CGV_requiredNoCoursesElective){
                         CGV_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&CGV_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            CGV_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                CGV_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -226,13 +249,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&DIS_Core<DIS_requiredNoCoursesCore){
                             DIS_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&DIS_Core>0){
-                            if(CoursesSelected.has(value)){
-                                DIS_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    DIS_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -243,12 +272,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&DIS_Elective<DIS_requiredNoCoursesElective){
                         DIS_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&DIS_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            DIS_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                DIS_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -269,13 +304,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&FCS_Core<FCS_requiredNoCoursesCore){
                             FCS_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&FCS_Core>0){
-                            if(CoursesSelected.has(value)){
-                                FCS_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    FCS_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -286,12 +327,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&FCS_Elective<FCS_requiredNoCoursesElective){
                         FCS_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&FCS_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            FCS_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                FCS_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -310,13 +357,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&SE_Core<SE_requiredNoCoursesCore){
                             SE_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&SE_Core>0){
-                            if(CoursesSelected.has(value)){
-                                SE_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SE_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -327,12 +380,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&SE_Elective<SE_requiredNoCoursesElective){
                         SE_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&SE_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            SE_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SE_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -351,13 +410,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&SEC_Core<SEC_requiredNoCoursesCore){
                             SEC_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&SEC_Core>0){
-                            if(CoursesSelected.has(value)){
-                                SEC_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SEC_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -368,12 +433,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&SEC_Elective<SEC_requiredNoCoursesElective){
                         SEC_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&SEC_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            SEC_Core--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SEC_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -392,13 +463,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&ML_Core<ML_requiredNoCoursesCore){
                             ML_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&ML_Core>0){
-                            if(CoursesSelected.has(value)){
-                                ML_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    ML_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -409,12 +486,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&ML_Elective<ML_requiredNoCoursesElective){
                         ML_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&ML_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            ML_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                ML_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -433,13 +516,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&PL_Core<PL_requiredNoCoursesCore){
                             PL_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&PL_Core>0){
-                            if(CoursesSelected.has(value)){
-                                PL_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    PL_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -450,12 +539,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&PL_Elective<PL_requiredNoCoursesElective){
                         PL_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&PL_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            PL_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                PL_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
@@ -474,13 +569,19 @@ class ButtonInterface extends React.Component {
                         isElective=false;
                         if(!ButtonEvent[index]&&SP_Core<SP_requiredNoCoursesCore){
                             SP_Core++;
-                            CoursesSelected.add(value);
+                            CoursesSelected.push(value);
                         }
 
                         else if(ButtonEvent[index]&&SP_Core>0){
-                            if(CoursesSelected.has(value)){
-                                SP_Core--;
-                                CoursesSelected.delete(value);
+                            for (let k = 0; k <CoursesSelected.length ; k++) {
+                                if(value===CoursesSelected[k]){
+                                    SP_Core--;
+                                    let toBeRemoved = CoursesSelected.indexOf(value);
+                                    if (index > -1) {
+                                        CoursesSelected.splice(toBeRemoved, 1);
+                                        break;
+                                    }
+                                }
                             }
 
                         }
@@ -491,12 +592,18 @@ class ButtonInterface extends React.Component {
                 if(isElective){  //Same done for elective as is done for Core Courses
                     if(!ButtonEvent[index]&&SP_Elective<SP_requiredNoCoursesElective){
                         SP_Elective++;
-                        CoursesSelected.add(value);
+                        CoursesSelected.push(value);
                     }
                     else if(ButtonEvent[index]&&SP_Elective>0){
-                        if(CoursesSelected.has(value)){
-                            SP_Elective--;
-                            CoursesSelected.delete(value);
+                        for (let k = 0; k <CoursesSelected.length ; k++) {
+                            if(value===CoursesSelected[k]){
+                                SP_Elective--;
+                                let toBeRemoved = CoursesSelected.indexOf(value);
+                                if (index > -1) {
+                                    CoursesSelected.splice(toBeRemoved, 1);
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
