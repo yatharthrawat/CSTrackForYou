@@ -56,26 +56,26 @@ const SE_listCore = Data.SE_listCore;
 const SEC_listCore = Data.SEC_listCore;
 const SP_listCore = Data.SP_listCore;
 
-var CSE_Core=0;
-var CSE_Elective=0;
-var CGV_Core=0;
-var CGV_Elective=0;
-var DIS_Core=0;
-var DIS_Elective=0;
-var FCS_Core=0;
-var FCS_Elective=0;
-var ML_Core=0;
-var ML_Elective=0;
-var PL_Core=0;
-var PL_Elective=0;
-var SP_Core=0;
-var SP_Elective=0;
-var SE_Core=0;
-var SE_Elective=0;
-var SEC_Core=0;
-var SEC_Elective=0;
+let CSE_Core=0;
+let CSE_Elective=0;
+let CGV_Core=0;
+let CGV_Elective=0;
+let DIS_Core=0;
+let DIS_Elective=0;
+let FCS_Core=0;
+let FCS_Elective=0;
+let ML_Core=0;
+let ML_Elective=0;
+let PL_Core=0;
+let PL_Elective=0;
+let SP_Core=0;
+let SP_Elective=0;
+let SE_Core=0;
+let SE_Elective=0;
+let SEC_Core=0;
+let SEC_Elective=0;
 
-var CoursesSelected=[];  //Course Selected List Maintained
+let CoursesSelected=[];  //Course Selected List Maintained
 
 function empty(){
     CoursesSelected=[];
@@ -675,8 +675,8 @@ class ButtonInterface extends React.Component {
 
 
     render() {
-        var buttons = [];
-        for (var i = 0; i < CourseList.length; i++) {
+        let buttons = [];
+        for (let i = 0; i < CourseList.length; i++) {
             buttons.push(this.renderCourse(i));
         }
         document.title = "CS Track For You";
